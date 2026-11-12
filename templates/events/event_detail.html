@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ event.title }}</h1>
+  {% if event.poster %}
+    <img src="{{ event.poster.url }}" alt="{{ event.title }}">
+  {% endif %}
+  <p><strong>Начало:</strong> {{ event.starts_at|date:"d.m.Y H:i" }}</p>
+  <p>{{ event.summary }}</p>
+  <div>{{ event.description|linebreaks }}</div>
+  <p><a href="{% url 'events:event_list' %}">← К списку событий</a></p>
+{% endblock %}

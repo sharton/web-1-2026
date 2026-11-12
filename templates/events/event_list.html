@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Все события{% endblock %}
+
+{% block content %}
+  <h1>Все события</h1>
+  {% for event in events %}
+    <article>
+      <h2><a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a></h2>
+      <p>{{ event.summary }}</p>
+      <small>{{ event.starts_at|date:"d.m.Y H:i" }}</small>
+      <p><a href="{% url 'events:event_detail' event.pk %}">Подробнее →</a></p>
+    </article>
+  {% empty %}
+    <p>Событий пока нет.</p>
+  {% endfor %}
+{% endblock %}
